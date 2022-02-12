@@ -539,16 +539,16 @@ class Reader:
 
         return frame
 
-    def getValue(self, id):
+    def getValue(self, an_id):
         """ Return the value for an ID3 tag id, or for a
             convenience label ('title', 'performer', ...),
             or return None if there is no such value.
         """
-        if self.frames.has_key(id):
-            if hasattr(self.frames[id], 'value'):
-                return self.frames[id].value
-        if _simpleDataMapping.has_key(id):
-            for id2 in _simpleDataMapping[id]:
+        if an_id in self.frames:
+            if hasattr(self.frames[an_id], 'value'):
+                return self.frames[an_id].value
+        if an_id in _simpleDataMapping:
+            for id2 in _simpleDataMapping[an_id]:
                 v = self.getValue(id2)
                 if v:
                     return v
